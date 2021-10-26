@@ -13,7 +13,7 @@ class Main():
             print('Выходим...')
         else:
             print('Введена неверная команда')
-            self.start()
+            return self.start()
 
     def join_to_server(self):
         user_login = str(input('Введите имя пользователя: '))
