@@ -3,16 +3,19 @@ import admin_panel
 
 class Main():
     def __init__(self):
+        self.start()
+
+    def start(self):
         user_selection = str(input('Для входа в систему введите команду `войти`, для выхода - `выйти` -> '))
         if user_selection == 'войти':
-            self.join_to_database()
+            self.join_to_server()
         elif user_selection == 'выйти':
             print('Выходим...')
         else:
             print('Введена неверная команда')
-            Main()
+            self.start()
 
-    def join_to_database(self):
+    def join_to_server(self):
         user_login = str(input('Введите имя пользователя: '))
         user_password = str(input('Введите пароль: '))
 
@@ -36,7 +39,7 @@ class Main():
             else:
                 print('Перенаправляем вас на главную "страницу"...')
                 time.sleep(.5)
-                Main()
+                self.start()
 
     def is_registered(self, user_login, user_password):
         try:
