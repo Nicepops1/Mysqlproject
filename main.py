@@ -3,15 +3,17 @@ import getpass
 from Values import user_name, password
 from mysql.connector import connect, Error
 
-
+#Основной класс
 class Mysqlproject():
 
+    #Инициализация класса
     def __init__(self, *args):
         print("#" * 20)
         self.mainfunc()
 
+    #Основная функция
     def mainfunc(self):
-        choice = input("1.Создать нового пользователя\n2.Войти\n3.Выйти\nВведите цифру выбранной команды: ")
+        choice = input("1.Создать нового пользователя\n2.Войти в профиль\n3.Выйти из программы\n"+"#"*20+"\n \nВведите цифру выбранной команды: ")
         list_choice = {
             "1": self.input_value,
             "2": self.user_enter,
@@ -23,6 +25,7 @@ class Mysqlproject():
             print("Выбрана неправильная команда")
             return self.mainfunc()
 
+    #Функция создания нового пользователя
     def input_value(self):
         new_username = input("Введите имя пользователя: ")
         new_passwd = getpass.getpass(prompt="Введите пароль: ")
@@ -43,6 +46,7 @@ class Mysqlproject():
             print("Пароли не совпадают")
             return self.mainfunc()
 
+    #Функция входа в профиль
     def user_enter(self):
         print("\n" + "#" * 20 + "\n")
         try:
@@ -52,14 +56,18 @@ class Mysqlproject():
                          user=enter_username,
                          password=enter_password,
                          ) as connection:
-                print("\n" + "#"*20+f"\nДобро пожаловать {enter_username}!")
-                print("")
+                print("\n" + "#"*20+f"\nДобро пожаловать {enter_username}!\n")
+                user_choice = input("Выберите номер команды:\n1.Просмотр таблицы в базе данных\n2.Редактирование базы данных\n3.Дополнительные функции")
+                list_user_choice = {
+                    #TO DO user_functions
+                }
 
 
         except Error as e:
             print("\n",e)
             return self.mainfunc()
 
+    #Функция выхода из приложения
     def user_quit(self):
         print("Выходим...")
         sys.exit()
